@@ -12,10 +12,11 @@ public class Goal : MonoBehaviour
     [SerializeField] GameObject TopLeft;
     [SerializeField] GameObject BotRight;
     [SerializeField] GameObject BotLeft;
-    [SerializeField] TMP_Text ScoreTxt;
-    [SerializeField] GameObject nextGoal;
-    static int score;
-   
+
+    [SerializeField] Goal nextGoal;
+    [SerializeField] Shoot _shoot;
+    [SerializeField] Instructions instructions;
+
 
     float BotRightX;
     float TopRightX;
@@ -40,10 +41,11 @@ public class Goal : MonoBehaviour
         {
             if (ballPos.position.z> TopRightZ && ballPos.position.z < TopLeftZ) // ball inside the y axis of the goal (sideways)
             {
-                score++;
-                ScoreTxt.text = score.ToString();
-                nextGoal.gameObject.SetActive(true);
-                gameObject.SetActive(false);
+                instructions.Goalllllllllll();
+                nextGoal.transform.parent.gameObject.SetActive(true);
+             
+                _shoot.UpdateGoal(nextGoal);
+                gameObject.transform.parent.gameObject.SetActive(false);
 
                 return true;
             }

@@ -6,7 +6,7 @@ public class Shoot : MonoBehaviour
 {
     [SerializeField] GameObject Ball;
     [SerializeField] GameObject Fan;
-    [SerializeField] Goal goal;
+    [SerializeField] Goal _goal;
     [SerializeField] int BallAmount = 50;
     [SerializeField] float Force = 50;
     [SerializeField] float Gravity = 50;
@@ -30,17 +30,19 @@ public class Shoot : MonoBehaviour
 
     private void Update()
     {
-        if (!goal)
-        {
-            GameObject.FindGameObjectsWithTag("goal");
-        }
+       
         if (Input.GetKeyDown(KeyCode.Space) && balls.Count > 0)
         {
             balls[0].gameObject.SetActive(true);
-            balls[0].ShootMe(Force,Gravity,GroundFriction,AirFriction,Mass,transform.forward,goal,Fan, windSpeed, FanRange);
+            balls[0].ShootMe(Force,Gravity,GroundFriction,AirFriction,Mass,transform.forward,_goal,Fan, windSpeed, FanRange);
             balls.RemoveAt(0);
         }
         
+    }
+
+  public void UpdateGoal(Goal goal)
+    {
+        _goal = goal;
     }
 
 
